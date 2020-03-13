@@ -1,0 +1,2 @@
+INSERT INTO clientes (nombre,apellido,email,create_at) VALUES ('Jhon','Galvis','jhon.galvis',SYSDATE);
+INSERT INTO clientes (nombre,apellido,email,create_at) VALUES ('Jairo','Arenales','jairo.arenales',SYSDATE);
