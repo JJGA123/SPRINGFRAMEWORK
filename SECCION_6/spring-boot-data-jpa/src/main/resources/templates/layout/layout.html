@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="'Spring Boot: MVC + Thymeleaf + JPA - '+  ${titulo}"></title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/personal.css}">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Sprting boot 5!!</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li th:class="${ 'nav-link' + ' ' + activeHome}"><a
+						class="nav-link" th:href="@{/home}">Home</a></li>
+					<li th:class="${ 'nav-link' + ' ' + activeListar}"><a
+						class="nav-link" th:href="@{/listar}">Clientes </a></li>
+					<li th:class="${ 'nav-link' + ' ' + activeFormulario}"><a
+						class="nav-link" th:href="@{/form}">Formulario</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="container"></div>
+	<div th:fragment="alertas">
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text=${success}></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text=${error}></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text=${warning}></div>
+		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
+	</div>
+	<footer class="container" th:fragment="footer">
+		<hr />
+		<div class="col-sm-4" style="float: left;">
+			<img alt="Spring logo" th:src="@{/images/spring.png}">
+		</div>
+		<br /> <br />
+		<div class="col-sm-8" style="float: right;">
+			<p>
+				Powered by <a href="https://spring.io/projects/spring-boot">Spring
+					Boot</a> y <a href="https://www.thymeleaf.org/">Thymeleaf</a>.
+			</p>
+			<p>
+				Este proyecto fue desarrollado en IDE Eclipse + Spring Plugins (STS
+				Spring Tool), profesor Andrés Guzmán. <br />&copy; Company 2020,
+				Inc. Todos los derechos reservados. Términos de uso y privacidad.<br />
+			</p>
+		</div>
+	</footer>
+	<script th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
