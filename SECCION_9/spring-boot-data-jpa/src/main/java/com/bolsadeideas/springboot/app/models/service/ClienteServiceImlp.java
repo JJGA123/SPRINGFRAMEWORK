@@ -94,4 +94,16 @@ public class ClienteServiceImlp implements IClienteService{
 		facturaDao.deleteById(id);
 	}
 
+	@Override
+	public Factura fetchFacturaByIdWithClienteWhitItemFacturaWhitProducto(Long id) {
+		// TODO Auto-generated method stub
+		return facturaDao.fetchByIdWithClienteWhitItemFacturaWhitProducto(id);
+	}
+
+	@Override
+	public Cliente fetchByIdWithFacturas(Long id) {
+		// TODO Auto-generated method stub
+		return clienteDao.fetchByIdWithFacturas(id);
+	}
+
 }
