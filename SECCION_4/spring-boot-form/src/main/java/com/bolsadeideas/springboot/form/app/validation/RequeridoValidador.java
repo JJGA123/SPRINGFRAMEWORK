@@ -3,12 +3,13 @@ package com.bolsadeideas.springboot.form.app.validation;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class RequeridoValidador implements ConstraintValidator<Requerido, String>{
+import org.springframework.util.StringUtils;
+
+public class RequeridoValidador implements ConstraintValidator<Requerido, String> {
 
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		// TODO Auto-generated method stub
-		if(value == null || value.isEmpty()) {
+		if(value == null || !StringUtils.hasText(value)) {
 			return false;
 		}
 		return true;

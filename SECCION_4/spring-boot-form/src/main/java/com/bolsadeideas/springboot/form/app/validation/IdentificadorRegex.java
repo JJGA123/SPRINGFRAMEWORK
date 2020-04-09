@@ -14,9 +14,10 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface IdentificadorRegex {
-	String message() default "Identificador no valido con anotación";
+	String message() default "Identificador inválido";
 
 	Class<?>[] groups() default { };
 
 	Class<? extends Payload>[] payload() default { };
+
 }

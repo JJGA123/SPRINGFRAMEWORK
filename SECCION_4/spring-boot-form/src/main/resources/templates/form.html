@@ -1,67 +1,117 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title th:text="${titulo}"></title>
 </head>
 <body>
-	<h3 th:text="${titulo}"></h3>
-	<form th:action="@{/form}" th:object="${user}" method="post">
+    <h3 th:text="${titulo}"></h3>
+
+	<form th:action="@{/form}" th:object="${usuario}" method="post">
+
+		<div>
+			<label for="habilitar">Habilitar</label>
+			<div>
+				<input type="checkbox" id="habilitar" th:field="*{habilitar}">
+			</div>
+		</div>
+		
+		<div>
+			<label>Género</label>
+			<div th:each="gen: ${genero}">
+				<input type="radio" th:field="*{genero}" th:value="${gen}">
+				<label th:for="${#ids.prev('genero')}" th:text="${gen}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}"></div>
+		</div>
+		
+		<div>
+			<label for="pais">País</label>
+			<div>
+				<select id="pais" th:field="*{pais}">
+				<option value="">-- seleccionar --</option>
+				<option th:each="pais: ${listaPaises}" th:text="${pais.nombre}" th:value="${pais.id}"></option>
+				</select>
+			</div>
+			<div th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}"></div>
+		</div>
+		
+		<div>
+			<label>Roles</label>
+			<div th:each="role: ${listaRoles}">
+				<input type="checkbox" th:field="*{roles}" th:value="${role.id}" 
+				th:checked="${#lists.contains(usuario.roles, role)}">
+				<label th:for="${#ids.prev('roles')}" th:text="${role.nombre}"></label>
+			</div>
+			<div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></div>
+		</div>
+			
 		<div>
 			<label for="identificador">Identificador</label>
 			<div>
 				<input type="text" id="identificador" th:field="*{identificador}">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('username')}" th:text="${error.username}"></div>-->
-			<div th:if="#{fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
+			<div th:if="${#fields.hasErrors('identificador')}" th:errors="*{identificador}"></div>
 		</div>
+		
 		<div>
 			<label for="nombre">Nombre</label>
 			<div>
 				<input type="text" id="nombre" th:field="*{nombre}">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('username')}" th:text="${error.username}"></div>-->
-			<div th:if="#{fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+			<div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 		</div>
 		<div>
 			<label for="apellido">Apellido</label>
 			<div>
 				<input type="text" id="apellido" th:field="*{apellido}">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('username')}" th:text="${error.username}"></div>-->
-			<div th:if="#{fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+			<div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
 		</div>
 		<div>
-			<label for="username">User name</label>
+			<label for="username">Username</label>
 			<div>
-				<input type="text" id="usermane" th:field="*{username}">
+				<input type="text" id="username" th:field="*{username}">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('username')}" th:text="${error.username}"></div>-->
-			<div th:if="#{fields.hasErrors('username')}" th:errors="*{username}"></div>
+			<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 		</div>
 		<div>
 			<label for="password">Password</label>
 			<div>
-				<input type="password" id="password" th:field="*{password}">
+				<input type="password" th:field="*{password}" id="password">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('password')}" th:text="${error.password}"></div> -->
-			<div th:if="#{fields.hasErrors('password')}" th:errors="*{password}"></div>
+			<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 		</div>
 		<div>
-			<label for="email">Email</label>
+			<label for="email">Correo</label>
 			<div>
-				<input type="email" id="email" th:field="*{email}">
+				<input type="text" id="email" th:field="*{email}">
 			</div>
-			<!-- Manual<div th:if="${error!=null && error.containsKey('email')}" th:text="${error.email}"> </div>-->
-			
-			<div th:if="#{fields.hasErrors('email')}" th:errors="*{email}"></div>
+			<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+		</div>
+		
+		<div>
+			<label for="cuenta">Cuenta</label>
+			<div>
+				<input type="number" id="cuenta" th:field="*{cuenta}">
+			</div>
+			<div th:if="${#fields.hasErrors('cuenta')}" th:errors="*{cuenta}"></div>
+		</div>
+		
+		<div>
+			<label for="fechaNacimiento">Fecha Nacimiento</label>
+			<div>
+				<input type="date" id="fechaNacimiento" th:field="*{fechaNacimiento}" placeholder="yyyy-MM-dd">
+			</div>
+			<div th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
 		</div>
 		
 		<div>
 			<div>
-				<input type="submit" value="enviar">
+				<input type="submit" value="Enviar">
 			</div>
 		</div>
+		<input type="hidden" th:field="*{valorSecreto}">
 	</form>
 </body>
 </html>
