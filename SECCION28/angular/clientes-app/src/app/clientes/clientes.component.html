@@ -2,25 +2,37 @@
   <div class="card-header">Clientes</div>
   <div class="card-body text-primary">
     <h5 class="card-title">Listado clientes</h5>
-      <table class="table table-sm">
-        <thead>
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Email</th>
-            <th scope="col">Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cliente of clientes">
-            <td>{{cliente.id}}</td>
-            <td>{{cliente.nombre}}</td>
-            <td>{{cliente.apellido}}</td>
-            <td>{{cliente.email}}</td>
-            <td>{{cliente.createAt}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="alert alert-primary" role="alert" *ngIf="clientes?.length==0">
+      No hay registros en la base de datos!
+    </div>
+    <table class="table table-sm" *ngIf="clientes?.length>0">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Email</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{cliente.id}}</td>
+          <td>{{cliente.nombre}}</td>
+          <td>{{cliente.apellido}}</td>
+          <td>{{cliente.email}}</td>
+          <td>{{cliente.createAt}}</td>
+          <td><button class="btn btn-rounded btn-warning mx-1 my-1" type="button" [routerLink]="['/clientes/form', cliente.id]">Editar</button>
+            <button class="btn btn-rounded btn-danger mx-1 my-1" type="button" (click)='delete(cliente)'>Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="">
+    <div class="mx-4 my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">Crear cliente</button>
+    </div>
   </div>
 </div>
