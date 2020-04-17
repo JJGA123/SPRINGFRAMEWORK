@@ -1,0 +1,45 @@
+<ul class="alert alert-danger" *ngIf="errores?.length>0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+<div class="card bg-dark text-white">
+  <div class="card-header">{{titulo}}</div>
+  <div class="card-body">
+
+  <form (ngSubmit)=create()>
+    <div class="form-group row">
+      <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="cliente.nombre" required #nombre="ngModel">
+        <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+          <div *ngIf="nombre.errors.required">
+            Nombre es requerido.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="apellido" [(ngModel)]="cliente.apellido">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="email" class="col-form-label col-sm-2">Email</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" name="email" [(ngModel)]="cliente.email" #email="ngModel">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <button type="btn btn-primary" role="button">{{boton}}</button>
+      </div>
+    </div>
+  </form>
+
+  </div>
+</div>
