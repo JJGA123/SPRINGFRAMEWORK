@@ -1,0 +1,5 @@
+Sección 30: Angular: Manejo de errores en Backend Spring
+Sección 31: Angular: Manejo de errores en Frontend
+Sección 32: Angular: Validando form por el lado Frontend
+Sección 33: Angular: Validando form en Spring Backend
+Sección 34: Angular: Transformando datos del observable usando operador map y pipe
