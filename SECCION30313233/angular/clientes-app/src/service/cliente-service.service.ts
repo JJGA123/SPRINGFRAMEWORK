@@ -4,6 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import swal from 'sweetalert2';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
+
 
 import { Router } from '@angular/router';
 
